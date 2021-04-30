@@ -1,0 +1,837 @@
+Osclass 4.4.0 2021-04-01
+------------------------
+- IMPORTANT: jQuery updated from 1.8 into 3.6
+  This includes update of all related javascript libraries, market themes and several plugins
+  jQuery version can be changed in oc-admin > settings, by default old 1.8 library will be selected for retro-compatibility
+- Plugin section in backoffice updated:
+  Bulk action has been added into plugin section
+  Search option added, you can search plugins by string in name, description, author or version fields
+  Plugin list design has been slightly updated (support link instead of icon, changed wording, adjusted font size)
+- Breadcrumbs feature updated:
+  Created new section in Settings > Breadcrumbs
+  Added option to disable/hide breadcrumbs on specific pages, including custom (plugin) pages
+  Added option to show all levels of categories on listing page
+  Added option to add country, region and city into breadcrumbs on listing page
+  New filter created: breadcrumbs_page_title_filter
+- Category tree box has been redesigned, new icons used and now allows to choose category up to 4 levels.
+  This allows i.e. custom fields or different plugins to be defined in lowest level (nested) category.
+- Admin can now choose backoffice color scheme, besides default one there is additional 8 color schemes those can be applied in backoffice.
+- Completely redesigned functionality of structured data, created new functions, new hooks and new filters.
+  New functions: osc_structured_data_title, osc_structured_data_description, osc_structured_data_image, osc_structured_data_footer, osc_structured_data_header.
+  New hooks: structured_data_footer, structured_data_header.
+  New filters: structured_data_title_filter, structured_data_description_filter, structured_data_image_filter.
+- Checking for plugins & themes update has been redesigned and osclass now cache version data from OsclassPoint.
+  Also all product versions are provided in one call, instead of using 1 call per product, that significantly speed-up updates checking.
+- New constants are supported in config.php: DEMO_THEMES, DEMO_PLUGINS. 
+  If defined to true, admin those username contains "demo" will have significantly restricted access in backoffice only to themes/plugins, where this admin is not able to perform changes. Only one of these constants can be used at same time.
+  In case DEMO, DEMO_THEMES or DEMO_PLUGINS constant is set to true, and admin user with username "demo" exists, this is auto-filled into login form and login with demo admin will work with any password.
+  In case DEMO, DEMO_THEMES or DEMO_PLUGINS constant is set to true, and user with username "demo" exists, this is auto-filled into login form. Login with username starting with "demo" will work with any password.
+- Added tabbing functionality into backoffice, especially useful on plugin configuration pages (i.e. Realestate).
+- Widget in backoffice home page now cache and reuse results for 3 days, that speedup loading of data inside widgets related on external services.
+- Custom HTML code section/field has been added into Appearance > Cusotmization has been created. You cann add there custom HTML or JavaScript code that will be added into footer.
+  This code will not be changed or modified during theme or osclass updates.
+- Added cyrilic to latin conversion for URLs. Previously called cyrilic has been changed to greek.
+- Fixed and improved performence of location functions & queries.
+- Update of city, region or country native name, in case it is empty string, will be put into database as null.
+- Redesigned how price field is validated when publishing new listing, new functions has been added to properly extract number from user entered price value.
+- Set of fixes and updates to avoid getting undefined notices.
+- Fixed installation bug (undefined constant WEB_PATH) and possible issues with database connection while installing osclass on PHP 8.0
+- Fixed bug when trying bulk removal of listings.
+- Fixed bug that could occur when switching backoffice themes.
+- Fixed numerous bugs and design issues in Settings > Locations.
+- Fixed Sigma theme missing configuration link in Appearance section.
+- Fixed Sigma theme issue with text "Are you sure you want to delete your account?" being visible until page loaded in user account.
+- Improved Sigma publish page - increased size of wrapping box from 640px to 760px, fixed responsive view of TinyMCE box.
+- Added tabber functionality into Sigma theme.
+- In backoffice, when user is successfully updated, you will not be redirected to user list anymore, instead you stay on user profile page.
+- Variable $_SERVER['SCRIPT_FILENAME'] used to define base ABS_PATH is now refined and double forward slashes are removed, this caused on incorrect hosting configuration problems with osclass plugins and links. 
+- Updated osc_search_url() function to correctly search regions & cities by slug (not just by name & id).
+- Fixed bug for moderator admin user, that could not use backoffice homepage at all and got stuck there.
+- TinyMCE upgraded from 5.4 to 5.7 version.
+- get_ip() function has been sunset.
+- osc_get_ip() function has been created, that is more reliable than get_ip() and get more realistic IP of user. Function get_ip() still can be used and will return content osc_get_ip().
+- Following keywords can now be used in any email template: {WEB_URL}, {WEB_TITLE}, {WEB_LINK}, {CURRENT_DATE}, {HOUR}, {IP_ADDRESS}; no matter if is pre-defined for template or no.
+- Fixed responsive layout for sigma theme on publish page.
+- OsclassPoint API fixed to properly identify products that has been already purchased by user.
+- Item ID and User ID has been added to edit pages in backoffice.
+- Listing table in backoffice now also shows premium views - how many time was listing shown in "Premium block". Premium views are visible only for listings those are set as premium.
+- When editing listing, link to edit user profile & profile picture is added into User Information block in case listing belongs to registered user
+- Admin can now block/unblock all users listing by one click from User list in backoffice.
+- Admin type (Moderator/Administrator) has been added to admins table in backoffice.
+
+
+Osclass 4.3.2 2021-01-29
+------------------------
+- Fixed problem with some plugins missing in backoffice left navigation menu
+
+
+Osclass 4.3.1 2021-01-27
+------------------------
+- Fixed problem with unfunctional friendly URLs for plugin pages
+- Fixed overlay issue in backoffice (menu vs flash message) 
+
+
+Osclass 4.3.0 2021-01-26
+------------------------
+- Osclass and all themes & plugins are now compatible with PHP 8.0
+- Incorrect mail server configuration will not block actions where mails are sent (like user register or listing publish).
+- New section under Apearance has been created - customization, where you can enter any CSS code to modify appearance of your theme.
+  This code will not be changed or modified during theme or osclass updates, so it provides ultimate way to do design changes unrelated to updates.
+- User table in backoffice now contains also phone number of user (mobile if not empty, otherwise land phone)
+- Fixed usage of POP3 before SMTP in mail function
+- Fixed different issues with form functions
+- Removed child themes from update sequence - child themes cannot be updated at all
+- Enabled options for current theme to be updated
+- Themes are now sorted in ascending order by their name
+- Fixed error message when installing problematic plugin, where message was sometimes not visible
+- Design for filter pop-up window in backoffice on mobile devices has been fixed
+
+
+Osclass 4.2.2 2020-12-21
+------------------------
+- Fixed problem when editing listing, updating contact phone or contact other would take no effect.
+- Fixed problem with pagination links in user public profile, when friendly urls are disabled.
+- Updated function osc_get_current_user_locations_native to avoid undefined notice log.
+- Fixed installation problems when email was impossible to send using PHP mailer.
+- Fixed notices in item form class
+- Security update to avoid using action parameter on home page for code injection
+- Function get_magic_quotes_gpc completely removed from osclass as it is deprecated
+
+
+Osclass 4.2.1 2020-12-09
+------------------------
+- Improvements and fixes on script installation process.
+- listAll function added to Region class in order to sort data by name ascending.
+- listAll function in Country class updated to proper DAO form.
+- ItemForm::region_select() function now accept 3rd parameter that if set to true, will generate list of all regions (in case site not use countries).
+- ItemForm::region_select() will generate regions by default in case website contains only 1 country.
+- Optimized & merged js & css are now cleaned on theme change.
+- Sigma theme public profile now show proper user image.
+- osc_sanitize_url() and osc_validate_url() has been updated.
+- user save URL in profile has been updated & improved.
+- in backoffice item edit/add form, location selector has been changed to dropdowns (it was dropdown / autocomplete / autocomplete).
+- fixed possible error notices and problems in hSearch helper file.
+- item url structure has changed for new installation from {CATEGORIES}/{ITEM_TITLE}_i{ITEM_ID} into {CATEGORIES}/{ITEM_TITLE}-i{ITEM_ID}, this change has no impact on existing installations.
+- fixed possible problems with pagination generation caused by group by statement in item counter function.
+- fixed installation error that could be thrown from localhost due to sending mail from osclass@localhost, that is not valid mail.
+- you can now upgrade from Osclass Evo script, where OsclassPoint script will detect other branch and provide all required updates to convert files and tables.
+
+
+Osclass 4.2.0 2020-12-05
+------------------------
+- Breadcrumbs micro-data updated to latest definition of http://schema.org/BreadcrumbList
+- Static page has new option - add to index / exclude from index that allows you to manage which pages can be indexed by google (search engines) and which pages should not be indexed
+- Search engine - counting has been redesign and counting is now done on database side instead of PHP side, that speed up whole process and removes limit on total number of items.
+  In prior versions limit was set to 100*items_per_page
+- Oc-admin login page is now fully responsive
+- Osclass dialog boxes (ui) can now be closed also by clicking outside box 
+- Currency error query fixed in case no currency has been inserted into filter
+- Custom fields are now sortable and can be reordered in prefered way
+- Rating (stars) can now be enabled at comments, so comment can now be simply transformed into item review
+- Fixed bug with native name of locations those shown null for locations where native name was not defined (in location dropdowns on publish page)
+- New security feature in front & back office: when visitor login with incorrect password, it will be suspended for several minutes before next login attempt.
+  After 5 incorrect attempts - 5 minutes suspendation time, after 10 attempts - 30 minutes, after 15 attempts - 60 minutes, after 20, 25, 30, ... attempts - 360minutes suspendation time. 
+  This helps to protect customer's data significantly.
+- Added option to choose where is user redirected after listing publish (priorities): Dashboard > Listing > Category; Listing > Category; Category
+- Admin can now enable TinyMCE (rich edit) in user profile - user info in front & backoffice. This can be very useful together with plugins like Business Profile. 
+- Market pages has been created for themes, plugins, languages (core, plugins, themes) and locations. You can now simply purchase, install, update, activate and configure any of these directly in backoffice.
+  User experience was key aspect of whole new market pages and exploring plugins, themes and importing data into osclass was never simpler.
+- New section "Data clean up" has been created in backoffice under Tools, you can now remove unwanted listings data (expired, not activated, blocked, spam), 
+  unwanted users data (blocked, not activated) and unwanted comments (blocked, not activated)
+- Language files (zip) has been renamed completely (to simplify naming convention), all files has been updated to correctly reference it's real version
+- Fixed item price, where 0 price was processed as "Check with seller" instead of "Free"
+- Added user profile picture functionality, including enable/disable this feature, setting up desired image size in pixels
+  Profile picture uploader allows to rotate, zoom and crop image
+- Redesigned CSRF security tokens to not be so much anoying. As example was taken wordpress using simple token functionality
+  To disable security check on form (input with token), new keywords are available to be added to form class: nocsrf (current), notoken, nooctoken
+- Backoffice (oc-admin) home page has been completely redesigned and works now based on "widgets" those show different kind of information about your website and it's status
+  Widgets can be collapsed right on the fly on dashboard and those you do not like at all can be completely hidden in widget settings page
+- Statistics page in backoffice got new chart design that does not look such "oldish", still using reliable Google Charts library
+- Fixed bug when it was not possible to change status of comment directly on comment page (Probable invalid request)
+- "Remember me" option on front & oc-admin login has been fixed, now you may stay online for 1 year
+- Code cleaning and formatting has been done in all osclass files, removing more than 200 000 unnecessary white spaces
+- Bender theme has been removed and is not delivered with osclass installation anymore (still can be used or downloaded from other places)
+- Oc-admin Modern theme has been removed and is not delivered with osclass installation anymore (it still work properly, but will not contain any new options and fields)
+- Pagination function has been fixed and will accept also itemType in user account > user listings section (incl. friendly & non-friendly urls)
+- Backoffice meta title tags has been redesigned, not using right double arrow anymore and using "-" instead. For login, forgot, recover pages in oc-admin, page title has been switched with action to match format of all other backoffice pages.
+- Moderator now can get extra access into plugin pages, new field "Moderator extra access" has been created. 
+  Access exeption is identified by "file" or "route" used by plugins. Examples: business_profile/admin/configure.php (file); google_maps_settings (route)
+- Renewal feature has been integrated. Admin can enable renewals, enable to update publish date on renewal, limit maximum number of renewals per item
+  Supporting functions like renewal URL, checking if renewal is eligible and similar has been created as well
+- Structured data / micro data / rich tags has been integrated directly into core and are generated on every single page of osclass.
+  Includes facebook OG tags, google rich tags, twitter tags. This will also fix issue related to aggregated rating.
+- Contact form bug fix - in case visitor did not uploaded any attachment, osclass will no more throw error: Incorrect attachment extension
+- Following libraries has been updated to latest versions (PHP Mailer - 6.1.x, Gettext - 4.8.x, Recaptcha - 1.2.x, HTML Purifier - 4.13.x, PHP Sec lib - 2.0.x)
+  Before updating, it is recommended to remove (move somewhere else) content of folder oc-includes/vendor/phpmailer as v6.x use different file structure than old v5.x
+- Osclass now contains CSS & JS optimization features those allows to merge CSS & JS files into one master, as well as to minify master file.
+  Admin can setup "banned words" so script/style with specific word in name is not included. Admin can also exclude CSS / JS optimization on particular pages.
+- New feature - admin toolbar in front - has been added. You can enable menu (visible to admin only) that allows to manage your osclass content much easier
+- New feature - admin can now login as user - this option has been added to user list in backoffice
+- Robots.txt has been updated and does not allow bots to crawl multiple osclass folders those should not be indexed
+- Filters item_title & item_description has been added to search items as well, so title and description can be modified in same way on all the places (i.e. bad words functionality)
+- Improvements when processing non-latin characters into URL, like cyrilic, chinese, alphabet etc. Search page will not throw error anymore when using such characters with friendly URLs.
+- Listing views count has been added to oc-admin > Listings section as last column.
+- User can now deactivate (disable) it's listing in same way as it is activated, supporting functions osc_can_deactivate_items and osc_item_deactivate_url were created.
+- Auto-upgrade no more send emails to admin if nothing has been upgraded. Now will also contain information if core, plugins, themes or languages has been updated.
+- limit set on generic_select function that generates select fields, default value is 1000. This is to protect website from loading unnecessary too much options into select box.
+- location dropdown functions (country_select, region_select, city_select) from item form class has been redesigned and now does not load any data if not necessary.
+  In previous versions it loaded all countries, regions and cities into select boxes that made website to load for long time and made it slow and unresponsive to user interactions.
+- Fixed bug/problem with translations of CHILD themes those could not be properly used on prior osclass versions. Osclass now consider both language files as well as both translation domains.
+- version_compare2 function to compare versions of products has been redesigned and improved to accept string as well as integer version numbers.
+- added missing email variables to class to avoid undefined notices error. Updated class to avoid errors in case some variable description is missing.
+- new functions has been created to support theme authors: osc_lib_url(), osc_content_url(), osc_themes_url(), osc_plugins_url(), osc_translations_url().
+- update removes old phpmailer folder located in oc-includes folder to avoid issues when using different plugins those may be checking if this folder exists.
+
+
+Osclass 4.1.1 2020-09-16
+------------------------
+- TinyMCE (rich text editor) on publish page is now responsive
+- TinyMCE (rich text editor) now updates base textarea object instantly after typing, so validation functions and character counts works properly
+- Recaptcha settings updated in oc-admin (changed wording, removed options)
+- Recaptcha fail message changed to "Recaptcha validation has failed" from "The reCAPTCHA code is wrong", as there is no code anymore that is put into this field
+- Email templates > Test email now has default value of your contact email
+- Settings > Mail server now contains "Send test mail" button that will send testing email using your configuration to osclass contact email
+- Test email functionality has been improved, now differentiate also between demo site, validate email address, check if mail address is not blank
+- Admin themes gallery in backoffice buttons redesigned for easier navigation
+- Fixed location counts functions to not count all locations, but only those that are not empty
+
+
+Osclass 4.1.0 2020-09-16
+------------------------
+- Cron execution history is now available on settings page in "Cron Settings" section
+- When country, region or city is updated, now new name/native name is updated also on user location data (not just item location data)
+- When country phone code & currency is filled, it will now auto-update currency selection based on country and add country phone code prefix into phone field
+- User list table in oc-admin has been updated, now shows last modification/registration date and last access date of user
+- User last access date logging has been changed from once per hour to once per minute, this allows to check wheter is user still online or not
+- New function created: osc_user_is_online($user_id = '') that returns true if user has been active in last 5 minutes (is online), otherwise it returns false
+- All translations updated, now in en_US version also .pot files are delivered for easy updates of existing translations
+- Listing settings - admin can setup if item contact phone number will be visible to all users or just to logged-in users
+- Field "show phone on the listing page" on publish page is now by default checked
+- Alerts has been upgraded and optimized. Alert notification email now contains table with list of alert items and their pictures instead of list of urls only
+- In backoffice, default value 10 entries per page has been changed to 25 entries per page in all sections of oc-admin
+- New locations source used, currently supporting 254 countries with much more detail data
+- Country now contains new fields: native country name, default phone code and default currency (editable from oc-admin)
+- Region now contains new field: native region name (editable from oc-admin)
+- City now contains new fields: native city name, latitude & longitude coordinates (editable from oc-admin)
+- Languages now has new field: Locations in native language those enable to use native language fields for locations
+- Admin login page now contains option/button to show/hide password
+- Osclass core has been updated to work with native version of location names, including search, ajax, stats and all other required models
+- Added functionality of image rotation on item publish page, compatibility with all the themes should be granted
+- Added upgrade & auto-upgrade functionality for osclass core
+- Added auto-update functionality for themes (free/paid) those are on OsclassPoint
+- Added auto-update functionality for plugins (free/paid) those are on OsclassPoint
+- Added auto-update functionality for languages those are maintained by OsclassPoint
+- API key connection functionality for automatic updates has been created, including api key validation button.
+  API key setting is present in general settings, section "Software Updates". You may find your API key at osclasspoint.com in Profile settings (key is autogenerated)
+- Search pattern settings: boolean / NLP / contains modes
+- Replaced TinyMCE v4.x with TinyMCE v5.4 in osclass core (assets)
+- Added option to enable TinyMCE rich editor on listings description in oc-admin & front theme
+- Added option to upload images in static pages & email templates just by placing it into content from clip board
+- Regenerate images process improved, script is now checking max execution time and once reaching, process is paused without error.
+  Admin can then resume process and continue from last processed images. This will have huge benefit on large websites with thousands of images
+- Fixed multiple error notices in osclass core
+- Osclass by OsclassPoint is now available at sourceforge.net (https://sourceforge.net/projects/osclass-by-osclasspoint/)
+- Updated Sigma frontoffice theme to latest, including lot of improvements in theme
+- Updated Omega backoffice theme to latest, including lot of improvements in theme
+- Fixed vulnerability CVE-2018-14481
+
+Osclass 4.0.1 2020-09-28
+------------------------
+- Fixed bug with static pages, those were repeating in footer (wrong titles)
+  Bug since osclass 3.9 release
+- Fixed bug when admin theme with no name could be selected as existing theme
+
+Osclass 4.0.0 2020-09-16
+------------------------
+- First release maintained by OsclassPoint.com
+- PHP 7.4 compatibility
+- Added color to category settings
+- Added icon to category settings
+- Added phone, show phone and other contact fields to item
+- New image upload feature - "Best crop" has been added
+- New default oc-admin theme (Omega) added
+- New default front-office theme (Sigma) added
+
+Osclass 3.9.0 2019-11-14
+------------------------
+- First release after official Osclass Shutdown.
+- Moved and updated almost all external PHP library to latest working one in separate vendor directory.
+- Fixed Multiple bugs
+- Removed old Osclass Market related code
+- Fixed PHP 7.3 Compatibility
+
+Osclass 3.8.0 2018-07-25
+------------------------
+- Fixed several vulnerabilities found by Zekvan Arslan ( https://www.netsparker.com )
+- Support for MariaDB (mysql community) for Categories
+- Hooks at category insert & edit ('edited_category', 'add_category')
+- Filter at search page ('search_pattern')
+- mb_strlen missing at installation has been fixed
+- meta_title() fixed missing page (recover & forgot)
+- fixed issue with filter 'pre_item_add_error' 
+- Updated HTML Purifier to 4.10.0
+- Updated PHPMailer to 5.2-stable
+- Fixed DateInterval custom field issues
+- Invalid email address verification on resend password request has been fixed
+- Multiple minor fixes and improvements
+
+Osclass 3.7.4 2017-07-24
+------------------------
+- Improved admin security
+- Minor fixes and improvements
+
+Osclass 3.7.3 2017-04-26
+------------------------
+- Improved compatibility with MariaDB
+- Using openssl functions instead of mcrypt (if available)
+- Improved Imagick usage, falling back to GD when not available. Can now be disabled on admin panel too.
+- Fixed duplication of indexes on upgrade
+- Search alerts correctly being sent to unregistered users
+- Fixed issue with session's id being invalid
+- Multiple minor fixes and improvements
+
+Osclass 3.7.2 2017-01-03
+------------------------
+- Fixed PHPMailer's CVE-2016-10033
+
+Osclass 3.7.1 2016-12-27
+------------------------
+- Fixed URL params error
+- Blocked upgrade on demo sites
+- Fixed some minor details
+
+Osclass 3.7.0 2016-12-12
+------------------------
+- Multisite fixes and improvements
+- Fixed an issue with custom fields on edit item
+- Mysql 5.7 compatibility
+- Comment email notification only if comment moderation is disabled
+- Use https in order to prevent warnings
+- Remove temporal unremoved files (auto_qqfile_*)
+- Cron skipping issues has been fixed
+- New hooks, pre_item_add_error and pre_item_edit_error. Plugins can add FlashMessages.
+- Prevent subscribe to searches twice (Alerts)
+- Increase PHP minimum version to 5.6.0
+- Robots.txt overwrite has been fixed
+- Improved helper function osc_validate_email()
+- Added new noCaptcha ReCaptcha
+- Added listings link at item add / item edit (oc-admin)
+- Fixed Authenticated cross-site scripting issues.
+  Found by Robin Peraglie with the help of the RIPS code analyser <https://www.ripstech.com>
+- Osclass core fixed and improvements
+- Bender theme minor fixes
+
+Osclass 3.6.1 2016-02-04
+------------------------
+- Fixed an issue with image rotation
+- Fixed the upgrade available message not being displayed
+- Fixed some minor details
+
+Osclass 3.6.0 2016-01-21
+------------------------
+- Fixed SQL injection vulnerability thanks to High-Tech Bridge Security Research Lab ( https://www.htbridge.com/ )
+- Fixed some minor details
+- Improvements in the market area
+
+Osclass 3.5.9 2015-10-16
+------------------------
+- Fixed typo
+- Fixed some URLs
+
+Osclass 3.5.8 2015-10-14
+------------------------
+- Fixed several vulnerabilities thanks to HP Fortify Open Review ( https://hpfod.com/open-source-review-project )
+- Minor bug fixes and improvements
+
+Osclass 3.5.6 2015-03-26
+------------------------
+- Fix typo
+
+Osclass 3.5.5 2015-03-23
+------------------------
+- Fix typo on SQL query
+
+Osclass 3.5.4 2015-03-23
+------------------------
+- Fixed two critical vulnerabilities thanks to Pedro Worcel ( http://www.security-assessment.com/ )
+
+Osclass 3.5.3 2014-12-15
+------------------------
+- Checking for updates is now down in background
+- Typo fix
+
+Osclass 3.5.2 2014-11-23
+------------------------
+- Fixed wrong market endpoint in upgrade-funcs
+
+Osclass 3.5.1 2014-11-18
+------------------------
+- Manage Users , added reset filter
+- Fixed issue at search page with gallery format and premium ads
+- Bender theme - Parent category link are clickable
+- Bender theme is now upgradable via market
+
+Osclass 3.5.0 2014-11-13
+------------------------
+- Higher limit for custom fields values.
+- Bug fixed, Manage locations, slugs not being generated
+- Added filter theme_url, change theme urls as you want
+- Add customizable class for pagination.
+- Added styles to Expired ads at Manage listings page.
+- Date format improvements at Manage users/listings page.
+- Fixed issues with Premium.php helper.
+- Ad management as a settings of Bender theme.
+- Connect / Disconnect from market.osclass
+- Market section, now show paid plugins and themes
+- My purchases (market page) download your paid plugins or themes
+- Market section, added search filters.
+- Several minor bugs fixed.
+- Several issues with Bender theme fixed.
+
+Osclass 3.4.3 2014-09-30
+------------------------
+- Fixed four critical vulnerabilities thanks to Egidio Romano ( http://karmainsecurity.com/ )
+- Fixed some issues with the thousand separator in prices
+- Fixed some issues with search urls creating a redirection loop
+- Minor bug fixes and improvements
+
+Osclass 3.4.2 2014-09-10
+------------------------
+- Fixed two vulnerabilities thanks to Robert & Onur from http://www.netsparker.com
+- Fixed some issues with the cache
+- Minor bug fixes and improvements
+
+Osclass 3.4.1 2014-08-04
+------------------------
+- Fixed some compatibility issues with PHP 5.2
+- Minor bug fixes and improvements
+
+Osclass 3.4.0 2014-08-04
+------------------------
+- Extensible cache support (memcache, APC,...)
+- User based subdomains
+- Emails filters with more variables added
+- Some sql optimizations (categories, users, premium)
+- UI fixes and improvements in admin
+- Imagemagick issues fixed
+- Child theme support
+- Minor bug fixes and improvements
+
+Osclass 3.3.2 2014-04-08
+------------------------
+- Changed license of Osclass to Apache License, Version 2.0, you could get a copy here http://www.apache.org/licenses/LICENSE-2.0
+
+Osclass 3.3.2 2013-12-17
+------------------------
+- Fixed issue #1239
+- Improved a little upgrade process and warning
+
+Osclass 3.3.1 2013-12-16
+------------------------
+- Fixed blurred watermark text
+- Fixed black background on images
+- Fixed error that makes impossible to install languages via market
+
+Osclass 3.3 2013-12-10
+------------------------
+- Subdomains improved
+- Ajax upload of photos, with preview
+- Improved image handling, no more mess with background color
+- Passwords more secure (use of Bcrypt + individual salt isntead of SHA1)
+- Updated HTML Purifier to 4.5.0
+- Release notes added when upgrading from previous version
+- Minor bug fixes and improvements
+
+Osclass 3.2 2013-XX-XX
+------------------------
+- Expiration date for a listing (till now you can do that only for the whole category)
+- Advertising by regions (region1.osclass/region2.osclass)
+- Custom searchable fields (you will be able to personalize more searches)
+- Bender responsive theme as default theme
+- Akismet for listings (added akismet filter to new listings)
+- Expiration notice (emails to the users reminding them about the expiration date of each listing)
+- Added search filter to manage users
+- Sending email to new admins created from oc-admin
+- Manage users minor improvements (row colorsStatus , Link to public user profile)
+- Added ability to display a custom maintenance page (per theme. Create a maintenance.php file in the theme folder)
+- Updated JQuery to 1.8
+- New routes for plugins
+- Override email from and email name from
+- Minor bug fixes and improvements
+
+Osclass 3.1.2 2012-05-07
+------------------------
+- CSRF errors now show a flash message instead of a blank page
+- Csrf error ajax, return json with error message
+- Memory peak usage in osc_update_location_stats fixed
+- Issues using Imagick instead of GD when uploading images fixedsi si
+- XSS vulnerability in search page fixed
+- Minor bug fixes and improvements
+
+Osclass 3.1.1 2012-03-20
+------------------------
+- Fixed breadcrumd in public profile
+- Showing correct description in public profile
+- SEO fixes: meta description, correct HTTP headers in search results and listing detail page
+- Don't override from email address when using SMTP
+- Problem with custom field url
+- Bug with reCAPTCHA in mobile browsers
+- Bug fixes related to upgrade
+- Bug fixes related to CSRF
+- Minor bug fixes
+
+Osclass 3.1 2012-02-26
+------------------------
+- Better market: you can now download languages from the admin
+- User ban system
+- Templates for static pages + better customization of pages
+- Manage email alerts
+- Security improvements: CSRF in the forms
+- Easier installation process
+- Preview of the email templates + legend in the sidebar
+- Enqueue styles and javascripts urls
+- Remove several cities/regions at the same time
+- Upgrade Osclass via CLI
+- Minor bug fixes
+
+Osclass 3.0.2 2012-10-22
+------------------------
+- Use email from SMTP Settings if it's defined
+- Implode categories in search url parameter
+- If the submenu is too big in oc-admin now it can be scrollable
+- Javascript validation when changing the user email
+- Search a listing by email even if the listing is from a non-registered user
+- Search users by email in manage users
+- Javascript error in countrID selector
+- Enhancement: Show total views from osc_item_views helper
+- Bug: _whereIn method in DBCommandClass
+- Bug: javascript error in manage custom fields
+- Bug: Do not select by default the country in the filters of manage listings
+- Bug: Show "Showing X to X of X results" if there is only one page in oc-admin pagination
+
+Osclass 3.0.1 2012-08-13
+------------------------
+- Bug: changed from ENT_COMPACT to ENT_COMPAT
+- Bug: Edit comment in oc-admin
+- Bug: Use image magic uploading images
+- Bug: Showing correctly the urls in RSS
+- Bug: Correct subject in alert emails
+- Bug: Typo mistake in manage media
+- Bug: category slugs only accept alphanumeric
+- Bug: emails sent from email contact instead of osclass@domain.tld
+- Bug: http_chunked_decode was being redeclared
+- [ Modern theme ] Removed a duplicated id
+
+Osclass 3.0 2012-07-12
+------------------------
+- Added a toolbar at the header of the oc-admin
+- New sidebar menu in the admin. Now it’s easier to add menus and submenus with helpers
+- Listing and user statistics in the dashboard
+- New oc-admin design
+- Manage reported listings
+- Manage comments added ‘hidden comments’ filter
+- Two types of administrator users: super admin and moderator (only access to manage items and statistics)
+- More hooks and filters added in the oc-admin: help message, title, manage listings, etc.
+- Help boxes in the oc-admin
+- Browse/Download/Update plugins and themes from the market
+- Manually check plugin & theme updates in General settings
+- Added pagination on manage plugins
+- Canonical urls (when is needed) in the search pages
+- Improved meta titles and meta descriptions
+- Meta keywords
+- Footer urls in the search listing
+- Redirect 301 from the old listing url when the listing title has been changed
+- Nofollow attribute in the pagination
+- Breadcrumbs using rich snippets
+- Changed HTML structure of the Pagination Class
+- Exclude bot requests in the statistics
+- Improved filters, now can accept more than one argument, but only the first argument will be returned
+- Improved HTTP requests, implemented fsockopen instead of libcurl when curls is not installed
+- Minor bug fixes from previous versiones
+- Fixed some typo mistakes
+- [ Modern theme ] Disable Osclass footer
+- [ Modern theme ] Improved H1s and titles
+- [ Modern theme ] Default logo
+
+Osclass 2.4.1 2012-05-22
+------------------------
+- Fixed creation of search pagination url
+- Watermark image should be a PNG
+- Fixed bug in item > settings
+- Show the correct values in the footer of datatables
+- Upgrade is fixed when you came from versions with the country in multiple languages
+- Use osc_esc_js in javascript localization
+- Add currency button is clickable now
+- Fixed javascript error in custom fields
+- Corrected multiple typos in strings
+
+Osclass 2.4.0 2012-05-02
+------------------------
+- Admin layout redesign
+- Better performance in search queries
+- Install Osclass in your language
+- Customize permalinks
+- Recalculate category and location stats
+- New alert system. Now the alerts are saved in a JSON format
+- Two more options in custom fields: url and checkbox
+- AJAX in plugins
+- Internationalization of date and time strings
+- Throw Exceptions while installing a plugin and show the error message
+- Bug fixed: generate images from original and not normal
+- Fixed some minor bugs
+- [ Modern theme ] Some enhancements in search filters: nicer checkbox and show the region of the city in the city filter
+- [ Modern theme ] New flash messages design
+
+Osclass 2.3.7 2012-04-11
+------------------------
+- Changed blog feed url
+- Fixed a js bug with quote marks in manage comments
+- Pagination bug in manage media
+- Added osc_resource_preview_url helper
+- Don't show duplicated items when "pics only" filter is selected in search
+
+Osclass 2.3.6 2012-03-05
+------------------------
+- PHP Warning in user profile when the description was empty
+- Added missing helper: osc_reset_resources
+- Contact publisher is working OK now
+- Database errors during the installation are caught correctly. Now if you don't set well the database configuration, it warns you
+- Fixed redirect after wrong reCAPTCHA code after posting an item
+- We've removed PHP warnings from HTMLPurifier library
+- Default currency is selected in item forms
+- We've added more checks in image deletion
+
+Osclass 2.3.5 2012-01-16
+------------------------
+- Escape quotes in attr values of input tags using a new helper: osc_esc_html
+- PHP Warning if the user doesn't have a description in his profile
+- PHP Warning in Search model
+- Modified behavior in add/edit form of custom fields
+- Style of radio buttons in custom fields
+- JS error in add/edit page in oc-admin
+- XSS vulnerabilities in search page
+- SQL injections in search page and AJAX request in oc-admin (need to be logged as an admin)
+
+Osclass 2.3.4 2012-01-03
+------------------------
+- Deleting all admins bug fixed
+- Multiple installs bug fixed
+- Feeds url using permalinks
+- SQL error using picture only items bug fixed
+- Some hooks were added on admin
+- SQL optimized a little more
+
+Osclass 2.3.3 2011-12-17
+------------------------
+- Removed upgrade and upgrade-plugins files
+- Minor fix when editing the comments in oc-admin
+- Minor fix in the installation process if the config.php file exists
+
+Osclass 2.3.2 2011-12-13
+------------------------
+- Delete images when editing an item from oc-admin
+- Change type of the column s_what in t_item_description
+- Modified in the upgrade the type of s_what column in t_item_description
+
+Osclass 2.3.1 2011-12-02
+------------------------
+- Redirect to last page after logging in works with permalinks too
+- Reconnect to database when getting serialize object for Alerts
+- Don't load public user profile if it doesn't exist
+- Decrease category stats works fine now
+- Don't send admin notification when admin create a user
+- Clear "Mark as" option in oc-admin
+
+Osclass 2.3 2011-11-24
+------------------------
+- New DAO (Database Access Object)
+- Debug options to show or log queries and errors
+- Added an option to enable/disable plugins. So, you won't lose the information of this plugin
+- User is redirected to last visited page when he/she logs in
+- New notifications: e-mail to the admin when a new user is registered, e-mail to the publisher when a new comment is added
+- Profile page for users in the front-end
+- Full text search engine for searches
+- Static pages can be ordered now
+- New type of custom fields: select and radio button
+- Improved price format, now you can set: number of decimals, decimals separator and thousands separator
+- [Modern theme] Profile page for users
+- [Modern theme] Explanatory messages when contact form is not showed
+
+Osclass 2.2.3 2011-09-26
+------------------------
+- Bug fix: with plugins in Windows environments
+- Fixed an error when installing a new plugin if some plugin has been removed from the plugin directory
+- Bug fix: when user modifies the location in edit item
+- Bug fix: we're not using filter_var function any more
+- Bug fix: manage item doesn't crack if category name is not set
+- Bug fix: notify admin of new items works in all the cases now
+- Bug fix: check blank parameters in forgot-password-post, user-change-password and contact form
+- Bug fix: mailserver setting in oc-admin works fine in different environments
+- Pagination Class: now can be inherited
+- Fixed some minor Notice errors
+
+Osclass 2.2.2 2011-08-25
+------------------------
+- Now attr [type|src|charset|defer] of script html tag are not removed in widgets
+- Fixed some AJAX issues related to locations
+- If some file theme don't exists, we take the file from gui folder
+- Minor fix in sanitize item url
+- Created a define for DEMO purposes
+- Modified how admin password is set during the installation
+- Multi-byte characters in watermarks
+- Removed mysql NOW() parameter from everywhere, now the insert/update dates should be the system dates
+- Fixed some minor issues with locations when add/edit new items
+- osc_static_page_mod_date function take the correct value now
+- Custom pages shouldn't allow as internal name the file names
+- Fixed alert subscription
+- Fixed some minor bugs
+- Fixed some PHP Warnings
+- [Modern theme] Logo image is not converted now
+- [Modern theme] Some minor style changes
+
+Osclass 2.2.1 2011-08-04
+------------------------
+- Fixed: show recaptcha in edit item if it's configured
+- Fixed: if you have another table_prefix, it show the latest items + items in the search list
+
+Osclass 2.2 2011-08-01
+------------------------
+- New layout and more filters in manage items
+- Added custom fields (for items)
+- Watermark on pictures
+- Helpers for Rewrite::get_location and Rewrite::get_section
+- Premium ads (see paypal plugin)
+- Plurals in translations
+- Improved inputs related to locations
+- Improved error page in the front theme
+- Worlwide option is disabled in the installation
+- Permalinks with Chinese an Arabic characters works
+- All known bugs have been fixed fixed
+
+Osclass 2.1.1 2011-06-22
+------------------------
+- Filter of title and description is not too restrictive now
+- Fixed a warning message when there aren't categories
+- Fixed error checkdnsrr in windows
+- We don't show price filters or any field related with prices when it is disabled
+
+Osclass 2.1 2011-06-14
+------------------------
+- Help messages if you don't pass the requirements in the installer
+- Ping search engines in the installation
+- Change password at the end of the installation
+- Limit amount of items per user in a set time
+- Limit the number of photos that the user can add in an item
+- Statistics module: new users, new items...
+- Skip admin validation if the user has more than a defined number of items/comments
+- Improved category management: you can reorder, edit, delete, disable in the same page
+- Upload a logo to the header
+- Disable adding new items in root categories
+- Fill automatically the fields in case that something goes wrong
+- Delete photos of items via ajax
+- Improved pagination in search page
+- Added maintenance mode (in case you want to disable the website to the users)
+- Email verification on alerts
+- Disable contact item for non-registered users
+- Fancybox in modern theme
+- Improved expiration features
+- Some bugs fixed
+
+Osclass 2.0.3 2011-05-05
+------------------------
+- Price is showed fine when there're more than one language enabled
+- Locale Class renamed
+- STRICT Standars error in Category Class fixed
+- STRICT Standars error in Search Class fixed
+- Configure in Manage plugins appears even if the folder is a soft-link
+- [Modern theme] Input select in user dashboard has jquery.uniform style
+- Create mb_substr function if not exists
+- NOTICE error when users send an item to a friend
+- Upload images in IIS Servers
+- [Modern theme] Sidebar in main page shows now only regions fo the active items
+- [Modern theme] CSS category drop down improvements so the hierarchy of subcategories are visible.
+
+Osclass 2.0.2 2011-04-20
+------------------------
+- RSS fixed, now works fine if you write sFeed=rss or sFedD= in the search url.
+- In the item detail page, now the num views is the sum of all the days.
+- file_get_contents replaced for curl. Added a library that emulates curl if it's not installed.
+- Fixed NOTICE error when a user updates the profile.
+- Update process improved for future versions.
+
+Osclass 2.0.1 2011-04-12
+------------------------
+- Country displays correctly even if there are multiple languages installed.
+- City autocomplete works in search sidebar
+- Fixed forgot password in oc-admin
+- Recaptcha works fine in recover password
+- Fixed helper of format_price. Now it takes from s_currency_format in languages
+- Specify more the errors in installation process
+- If a user change the e-mail, it also changes now in the alert system
+- Prefill categories select with a default string instead of the first category
+
+Osclass 2.0 2011-04-06
+------------------------
+- Added several helpers to
+- Remember me is working in admin and user login.
+- Fixed RSS.
+- Fixed a lot of flash messages.
+- If ZipArchive is not compiled, now we use an external lib: pclzip.
+- Pre-fill comment form.
+- Improved photos validation through mime.
+- Auto-login after a user has validated an account.
+- Improved comment moderation.
+- Plugins/themes can be translated.
+- Permalinks: most links are user-friendly now.
+- New user dashboard.
+- Registered users can delete here own comments.
+- Recaptcha added to: comments, recover password, item contact.
+- Several small bugs fixed.
+
+Osclass 2.0 RC 2011-02-23
+------------------------
+- New structure based on Classes
+- Helpers: now there are a lot of functions that help the developer to modify the themes easily
+- Added a test that add fake content
+- New class to get external params (get, post, cookies, request)
+- New e-mails added in the installer
+- Translation uses a singleton
+- There are three files in languages: core.po, messages.po (for flash_messages), theme.po
+
+Osclass 1.2 delta 2011-01-12
+------------------------
+- New whole system of permalinks
+- Improved user profiles
+- ImageResize Class improved
+- Minor bugs fixed
+
+Osclass 1.2 beta 2010-12-14
+------------------------
+- Users can register without confirmation
+- Small changes in installer
+
+Osclass 1.2 alpha 2010-12-07
+------------------------
+- Add alerts system (users could subscribe to search results, and we'll be notified in case there're new ads)
+- Several small bugs fixed
+
+Osclass 1.1 2010-11-29
+------------------------
+- Add item from backoffice
+- User can not be contacted if the item is expired
+- Feed plugin
+- Banner management plugin
+- JSON works even if is not loaded with php (using a JSON class)
+- Indelible pages are not shown
+- Sort categories by position (this position is set in oc-admin)
+- Search and pagination bugs fixed
+- Mail bugs fixed
+- Small bugs fixed
+
+Osclass 1.1 RC 2010-11-22
+------------------------
+- Fixed installation and locations (in oc-admin) problems. Now, even though allow_url_fopen is disabled, it works well.
+- Now if you activate a new language and you haven't translated categories yet, it shows in other language that is available.
+- SMTP is working well now.
+- Added default currency feature
+- Small bugs fixed
