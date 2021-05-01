@@ -12,7 +12,7 @@
 
 <body class="forgot login <?php echo implode(' ',osc_apply_filter('admin_body_class', array())); ?>">
   <div id="login-header">
-    <a href="https://osclass-classifieds.com"><img src="<?php echo osc_current_admin_theme_url('images/osclass-icon.png'); ?>" class="logoimg" alt="<?php osc_esc_html(__('Osclass')); ?>" /></a>
+    <a href="<?php echo osc_base_url(); ?>"><img src="<?php echo osc_current_admin_theme_url('images/osclass-icon.png'); ?>" class="logoimg" alt="<?php osc_esc_html(__('Osclass')); ?>" /></a>
   </div>
 
   <div id="login-sub-header">
