@@ -227,7 +227,7 @@ class CAdminLogin extends AdminBaseModel
   //in this case, this function is prepared for the "recover your password" form
   function doView($file) {
     $login_admin_title = osc_apply_filter('login_admin_title', 'Osclass');
-    $login_admin_url   = osc_apply_filter('login_admin_url', 'https://osclass-classifieds.com');
+    $login_admin_url   = osc_apply_filter('login_admin_url', osc_base_url());
     $login_admin_image = osc_apply_filter('login_admin_image', osc_admin_base_url() . 'images/osclass-logo.gif');
 
     View::newInstance()->_exportVariableToView('login_admin_title', $login_admin_title);
